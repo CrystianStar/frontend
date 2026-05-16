@@ -60,13 +60,6 @@ return (
         </View>
         </View>
     </ScrollView>
-
-      {/* 4. Tab Bar Inferior */}
-    <View style={styles.tabBar}>
-        <Ionicons name="heart-outline" size={28} color="#f1c40f" />
-        <Ionicons name="home" size={28} color="white" />
-        <Ionicons name="person" size={28} color="white" />
-    </View>
     </View>
 );
 }
