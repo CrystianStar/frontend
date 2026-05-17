@@ -8,6 +8,22 @@ export default function Register() {
     const [senha, setSenha] = useState('');
     const [mostrarSenha, setMostrarSenha] = useState(false);
     const [dataNascimento, setDataNascimento] = useState('');
+    const handleDataChange = (texto: string) => {
+    // 1. Remove tudo que NÃO for número (bloqueia letras)
+    let apenasNumeros = texto.replace(/[^0-9]/g, '');
+
+    // 2. Coloca as barras automaticamente (Opcional, mas fica lindo!)
+    if (apenasNumeros.length > 2) {
+      apenasNumeros = apenasNumeros.replace(/^(\d{2})(\d)/, '$1/$2');
+    }
+    if (apenasNumeros.length > 5) {
+      apenasNumeros = apenasNumeros.replace(/^(\d{2})\/(\d{2})(\d)/, '$1/$2/$3');
+    }
+
+    // Atualiza o estado com no máximo 10 caracteres (DD/MM/AAAA)
+    setDataNascimento(apenasNumeros.substring(0, 10));
+  };
+
 
     return (
     <View style={styles.container}>
@@ -74,7 +90,9 @@ export default function Register() {
             placeholder="DD/MM/AAAA" 
             placeholderTextColor="#666"
             value={dataNascimento}
-            onChangeText={setDataNascimento}
+            onChangeText={handleDataChange}
+            keyboardType="numeric" // Força o teclado numérico no celular!
+            maxLength={10}
         />
         </View>
 
@@ -92,6 +110,7 @@ const styles = StyleSheet.create({
     container: {
     flex: 1,
     backgroundColor: '#000',
+    padding: 20,
     },
     headerBackground: {
     flex: 1, // Ocupa o espaço disponível no topo

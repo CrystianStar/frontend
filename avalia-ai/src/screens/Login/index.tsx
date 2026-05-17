@@ -6,35 +6,36 @@ import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } 
 export default function Login() {
   const navigation = useNavigation<any>();
   const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [lembrarMim, setLembrarMim] = useState(false);
 
   return (
     <View style={styles.container}>
-      
+
       {/* --- PARTE 1: O TOPO COM A IMAGEM --- */}
       {/* Usamos uma imagem de restaurante da internet como exemplo */}
-      <ImageBackground 
-    // Usa uma URL da internet provisoriamente
-    source={{ uri: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }} 
-    style={styles.headerBackground}
-    resizeMode="cover"
-    >
-    {/* CAMADA 2: O filtro escuro (Overlay) */}
-    <View style={styles.overlay}>
-      
-      {/* CAMADA 3: O Grupo da Logo (Pin + Texto) */}
-      <View style={styles.logoContainer}>
-        {/* Ícone de Pin Amarelo */}
-        <MaterialCommunityIcons name="map-marker-radius" size={28} color="#FFD700" />
-        {/* Texto "AvaliaAí" Amarelo */}
-        <Text style={styles.logoText}>AvaliaAí</Text>
-      </View>
-    </View>
-  </ImageBackground>
-      
+      <ImageBackground
+        // Usa uma URL da internet provisoriamente
+        source={{ uri: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836' }}
+        style={styles.headerBackground}
+        resizeMode="cover"
+      >
+        {/* CAMADA 2: O filtro escuro (Overlay) */}
+        <View style={styles.overlay}>
+
+          {/* CAMADA 3: O Grupo da Logo (Pin + Texto) */}
+          <View style={styles.logoContainer}>
+            {/* Ícone de Pin Amarelo */}
+            <MaterialCommunityIcons name="map-marker-radius" size={28} color="#FFD700" />
+            {/* Texto "AvaliaAí" Amarelo */}
+            <Text style={styles.logoText}>AvaliaAí</Text>
+          </View>
+        </View>
+      </ImageBackground>
+
 
       {/* --- PARTE 2: O CARTÃO ESCURO DE LOGIN --- */}
       <View style={styles.bottomSheet}>
-        
+
         <Text style={styles.titulo}>
           Bem-vindo de <Text style={styles.tituloDestaque}>volta!</Text> 👋
         </Text>
@@ -43,9 +44,9 @@ export default function Login() {
         {/* Campo de E-mail com Ícone */}
         <View style={styles.inputContainer}>
           <MaterialCommunityIcons name="email-outline" size={20} color="#888" style={styles.icon} />
-          <TextInput 
-            style={styles.input} 
-            placeholder="E-MAIL" 
+          <TextInput
+            style={styles.input}
+            placeholder="E-MAIL"
             placeholderTextColor="#888"
             keyboardType="email-address"
           />
@@ -54,9 +55,9 @@ export default function Login() {
         {/* Campo de Senha com Ícone de Olho */}
         <View style={styles.inputContainer}>
           <MaterialCommunityIcons name="lock-outline" size={20} color="#888" style={styles.icon} />
-          <TextInput 
-            style={styles.input} 
-            placeholder="SENHA" 
+          <TextInput
+            style={styles.input}
+            placeholder="SENHA"
             placeholderTextColor="#888"
             secureTextEntry={!mostrarSenha} // Esconde a senha se for falso
           />
@@ -67,15 +68,23 @@ export default function Login() {
 
         {/* Links de Lembrar Senha */}
         <View style={styles.opcoesContainer}>
-          <TouchableOpacity style={styles.checkboxContainer}>
-            <MaterialCommunityIcons name="checkbox-marked" size={20} color="#0044ff" />
-            <Text style={styles.textoOpcoes}>Lembrar de mim</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.checkboxContainer}
+            onPress={() => setLembrarMim(!lembrarMim)} // <-- O onPress fica AQUI DENTRO da tag!
+          >
+            {/* O ícone muda de nome dependendo se lembrarMim for verdadeiro ou falso */}
+            <MaterialCommunityIcons
+              name={lembrarMim ? "checkbox-marked" : "checkbox-blank-outline"}
+              size={20}
+              color="#FFD700"
+            />
+            <Text style={{ marginLeft: 8, color: '#4e4848' }}>Lembrar de mim</Text>
+          </TouchableOpacity>
           <TouchableOpacity>
             <Text style={styles.linkAmarelo}>Esqueci minha senha</Text>
           </TouchableOpacity>
         </View>
-        
+
         {/* Botão Principal */}
         <TouchableOpacity style={styles.botaoEntrar}>
           <Text style={styles.textoBotaoEntrar}>Entrar</Text>
@@ -102,11 +111,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#000', // Fundo preto para evitar piscos brancos
   },
   headerBackground: {
-  height: 250,
-  width: '100%',
-  borderBottomLeftRadius: 20,
-  borderBottomRightRadius: 20,
-  overflow: 'hidden', // Crucial para o arredondamento funcionar no Android
+    height: 250,
+    width: '100%',
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    overflow: 'hidden', // Crucial para o arredondamento funcionar no Android
   },
   overlay: {
     flex: 1,
