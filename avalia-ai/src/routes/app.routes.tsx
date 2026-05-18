@@ -20,7 +20,7 @@ export default function AppRoutes() {
       }}
     >
       <Tab.Screen
-        name="Explorar"
+        name="Login"
         component={Login}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="map-outline" size={24} color={color} />
@@ -47,10 +47,10 @@ export default function AppRoutes() {
         name="Configuracoes"
         component={Home} // O nome exato que você importou lá em cima
         options={{
-          tabBarLabel: 'Config', // O texto que vai aparecer embaixo do ícone
+          tabBarLabel: 'Home', // O texto que vai aparecer embaixo do ícone
           tabBarIcon: ({ color, size }) => (
             // Escolha um ícone diferente, como a engrenagem (settings)
-            <Ionicons name="settings-outline" color={color} size={size} />
+            <Ionicons name="map-outline" color={color} size={size} />
           )
         }}
       />
