@@ -42,8 +42,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   mapa: {
-    width: width,
-    height: 400, // Ajuste a altura conforme precisar para encaixar com o resto do app
+    width: '100%',
+    height: '100%', // Ajuste a altura conforme precisar para encaixar com o resto do app
   },
   
   // Estilo da Barra de Pesquisa (Flutuando no topo do mapa)
