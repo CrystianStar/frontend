@@ -5,7 +5,7 @@ import { Ionicons } from '@expo/vector-icons';
 // Importando as telas (garanta que esses arquivos existam na pasta src/screens/)
 import Login from '../screens/Login';
 import Favorites from '../screens/Favorites';
-import Register from '../screens/Register';
+import Profile from '../screens/Profile';
 import Home from '../screens/Home';
 
 const Tab = createBottomTabNavigator();
@@ -37,7 +37,7 @@ export default function AppRoutes() {
 
       <Tab.Screen
         name="Perfil"
-        component={Register}
+        component={Profile}
         options={{
           tabBarIcon: ({ color }) => <Ionicons name="person-outline" size={24} color={color} />
         }}

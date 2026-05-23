@@ -30,7 +30,6 @@ return (
       <Ionicons name="locate" size={16} color="#0044ff" />
       <Text style={styles.locationText}>Minha localização</Text>
     </TouchableOpacity>
-
   </View>
 );
 }
