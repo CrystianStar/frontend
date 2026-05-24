@@ -59,6 +59,87 @@ return (
             </Text>
         </View>
         </View>
+
+        {/* 3. Card do Restaurante (Exemplo baseado na image_ccbcd8.png) */}
+        <View style={styles.card}>
+        <Image 
+            source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
+            style={styles.cardImage} 
+        />
+        <View style={styles.cardContent}>
+            <View style={styles.cardHeader}>
+            <Text style={styles.restaurantName}>Praias</Text>
+            <Ionicons name="bookmark" size={20} color="blue" />
+            </View>
+            
+            <View style={styles.ratingRow}>
+            <Ionicons name="star" size={14} color="#f1c40f" />
+            <Text style={styles.ratingText}>4.8</Text>
+            <Text style={styles.categoryText}> • Restaurante</Text>
+            </View>
+
+            <Text style={styles.locationText}>
+            <Ionicons name="location" size={12} /> Centro, Florianópolis  •  1,2 km
+            </Text>
+            <Text style={styles.descriptionText} numberOfLines={1}>
+            Ambiente incrível e comida ainda melhor!
+            </Text>
+        </View>
+        </View>
+
+        {/* 3. Card do Restaurante (Exemplo baseado na image_ccbcd8.png) */}
+        <View style={styles.card}>
+        <Image 
+            source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
+            style={styles.cardImage} 
+        />
+        <View style={styles.cardContent}>
+            <View style={styles.cardHeader}>
+            <Text style={styles.restaurantName}>Pontos Turisticos</Text>
+            <Ionicons name="bookmark" size={20} color="blue" />
+            </View>
+            
+            <View style={styles.ratingRow}>
+            <Ionicons name="star" size={14} color="#f1c40f" />
+            <Text style={styles.ratingText}>4.8</Text>
+            <Text style={styles.categoryText}> • Restaurante</Text>
+            </View>
+
+            <Text style={styles.locationText}>
+            <Ionicons name="location" size={12} /> Centro, Florianópolis  •  1,2 km
+            </Text>
+            <Text style={styles.descriptionText} numberOfLines={1}>
+            Ambiente incrível e comida ainda melhor!
+            </Text>
+        </View>
+        </View>
+
+        {/* 3. Card do Restaurante (Exemplo baseado na image_ccbcd8.png) */}
+        <View style={styles.card}>
+        <Image 
+            source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
+            style={styles.cardImage} 
+        />
+        <View style={styles.cardContent}>
+            <View style={styles.cardHeader}>
+            <Text style={styles.restaurantName}>Parques</Text>
+            <Ionicons name="bookmark" size={20} color="blue" />
+            </View>
+            
+            <View style={styles.ratingRow}>
+            <Ionicons name="star" size={14} color="#f1c40f" />
+            <Text style={styles.ratingText}>4.8</Text>
+            <Text style={styles.categoryText}> • Restaurante</Text>
+            </View>
+
+            <Text style={styles.locationText}>
+            <Ionicons name="location" size={12} /> Centro, Florianópolis  •  1,2 km
+            </Text>
+            <Text style={styles.descriptionText} numberOfLines={1}>
+            Ambiente incrível e comida ainda melhor!
+            </Text>
+        </View>
+        </View>
     </ScrollView>
     </View>
 );
