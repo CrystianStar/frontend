@@ -1,11 +1,12 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import AppRoutes from './src/routes/app.routes';
+// 👉 Olha a correção aqui no finalzinho da linha:
+import AuthRoutes from './src/routes/auth.routes';
 
 export default function App() {
   return (
     <NavigationContainer>
-      <AppRoutes />
+      <AuthRoutes />
     </NavigationContainer>
   );
 }

@@ -1,4 +1,5 @@
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -11,6 +12,7 @@ export default function Register() {
     const handleDataChange = (texto: string) => {
     // 1. Remove tudo que NÃO for número (bloqueia letras)
     let apenasNumeros = texto.replace(/[^0-9]/g, '');
+    const navigation = useNavigation<any>();
 
     // 2. Coloca as barras automaticamente (Opcional, mas fica lindo!)
     if (apenasNumeros.length > 2) {
