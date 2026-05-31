@@ -25,6 +25,9 @@ export default function Home() {
         {/* 👉 O Mapa do Google Real */}
         <MapView 
           style={StyleSheet.absoluteFillObject} // Faz o mapa preencher todo o espaço do mapPlaceholder
+          accessible
+          accessibilityLabel="Mapa de Maceió"
+          accessibilityHint="Mapa interativo com o ponto inicial no centro da cidade"
           initialRegion={{
             latitude: -9.6659,    // Coordenadas centrais de Maceió
             longitude: -35.7350,
@@ -42,20 +45,31 @@ export default function Home() {
 
         {/* Barra de Pesquisa Flutuante */}
         <View style={styles.searchContainer}>
-          <Ionicons name="search" size={20} color="#666" style={styles.icon} />
+          <Ionicons name="search" size={20} color="#666" style={styles.icon} accessible={false} />
           <TextInput 
             style={styles.input}
             placeholder="Buscar lugares, restaurantes, cafés..."
             placeholderTextColor="#999"
+            accessibilityLabel="Campo de busca"
+            accessibilityHint="Digite o nome de um lugar ou tipo de estabelecimento"
           />
-          <TouchableOpacity>
-            <Ionicons name="options-outline" size={20} color="#0044ff" style={styles.icon} />
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Abrir filtros de busca"
+            accessibilityHint="Exibe opções adicionais de filtragem"
+          >
+            <Ionicons name="options-outline" size={20} color="#0044ff" style={styles.icon} accessible={false} />
           </TouchableOpacity>
         </View>
 
         {/* Botão de Localização Flutuante */}
-        <TouchableOpacity style={styles.locationButton}>
-          <Ionicons name="locate" size={16} color="#0044ff" />
+        <TouchableOpacity
+          style={styles.locationButton}
+          accessibilityRole="button"
+          accessibilityLabel="Minha localização"
+          accessibilityHint="Centraliza o mapa na sua localização atual"
+        >
+          <Ionicons name="locate" size={16} color="#0044ff" accessible={false} />
           <Text style={styles.locationText}>Minha localização</Text>
         </TouchableOpacity>
       </View>
@@ -65,7 +79,7 @@ export default function Home() {
         
         {/* Título e Filtros */}
         <View style={styles.sectionHeader}>
-           <Text style={styles.sectionTitle}>Categorias</Text>
+           <Text style={styles.sectionTitle} accessibilityRole="header">Categorias</Text>
         </View>
 
         <ScrollView 
@@ -84,7 +98,13 @@ export default function Home() {
         {/* Lista de Lugares (Cards) */}
         <View style={styles.sectionHeader}>
            <Text style={styles.sectionTitle}>Populares</Text>
-           <TouchableOpacity><Text style={styles.seeAll}>Ver todos</Text></TouchableOpacity>
+           <TouchableOpacity
+             accessibilityRole="button"
+             accessibilityLabel="Ver todos os lugares populares"
+             accessibilityHint="Abre a lista completa de locais populares"
+           >
+             <Text style={styles.seeAll}>Ver todos</Text>
+           </TouchableOpacity>
         </View>
 
         <ScrollView 
@@ -127,8 +147,14 @@ type FilterItemProps = {
 
 function FilterItem({ icon, label, active = false }: FilterItemProps) {
   return (
-    <TouchableOpacity style={[styles.filterItem, active && styles.filterActive]}>
-      <Ionicons name={icon as any} size={24} color={active ? "#fff" : "#333"} />
+    <TouchableOpacity
+      style={[styles.filterItem, active && styles.filterActive]}
+      accessibilityRole="button"
+      accessibilityLabel={`Categoria ${label}`}
+      accessibilityHint={`Filtra os resultados pela categoria ${label}`}
+      accessibilityState={{ selected: active }}
+    >
+      <Ionicons name={icon as any} size={24} color={active ? "#fff" : "#333"} accessible={false} />
       <Text style={[styles.filterLabel, active && { color: '#fff' }]}>{label}</Text>
     </TouchableOpacity>
   );
@@ -143,12 +169,17 @@ type PlaceCardProps = {
 
 function PlaceCard({ image, title, rating }: PlaceCardProps) {
   return (
-    <View style={styles.card}>
-      <Image source={{ uri: image }} style={styles.cardImage} />
+    <View
+      style={styles.card}
+      accessible
+      accessibilityLabel={`${title}, avaliação ${rating} estrelas`}
+      accessibilityHint="Toque para ver mais detalhes"
+    >
+      <Image source={{ uri: image }} style={styles.cardImage} accessible={false} />
       <View style={styles.cardInfo}>
         <Text style={styles.cardTitle} numberOfLines={1}>{title}</Text>
         <View style={styles.ratingRow}>
-          <Ionicons name="star" size={12} color="#FFD700" />
+          <Ionicons name="star" size={12} color="#FFD700" accessible={false} />
           <Text style={styles.ratingText}>{rating}</Text>
         </View>
       </View>

@@ -19,7 +19,7 @@ const colors = {
 
 // Componente para itens de lista reutilizável
 const ListItem = ({ label }: { label: string }) => (
-  <View style={styles.listItem}>
+  <View style={styles.listItem} accessible accessibilityLabel={label}>
     <Text style={styles.listItemText}>{label}</Text>
   </View>
 );
@@ -41,13 +41,19 @@ export default function ProfileScreen() {
           <Image 
             source={{ uri: 'https://static.vecteezy.com/system/resources/thumbnails/027/842/188/small/user-ecommerce-icon-fill-style-png.png' }} // Foto de exemplo
             style={styles.profileImage}
+            accessible={false}
           />
           <View style={styles.userInfo}>
-            <Text style={styles.userName}>Fulano</Text>
+            <Text style={styles.userName} accessibilityRole="header" accessibilityLabel="Perfil de Fulano">Fulano</Text>
             <Text style={styles.userVersion}>v 00.0</Text>
           </View>
-          <TouchableOpacity style={styles.settingsIcon}>
-            <MaterialCommunityIcons name="cog" size={32} color={colors.iconColor} />
+          <TouchableOpacity
+            style={styles.settingsIcon}
+            accessibilityRole="button"
+            accessibilityLabel="Abrir configurações"
+            accessibilityHint="Abre as opções de configurações do perfil"
+          >
+            <MaterialCommunityIcons name="cog" size={32} color={colors.iconColor} accessible={false} />
           </TouchableOpacity>
         </View>
 
@@ -55,10 +61,14 @@ export default function ProfileScreen() {
         <View style={styles.sectionContainer}>
           <View style={styles.sectionHeaderRow}>
             <View style={styles.headerIconLabel}>
-              <MaterialCommunityIcons name="tune" size={24} color={colors.textListHeader} />
+              <MaterialCommunityIcons name="tune" size={24} color={colors.textListHeader} accessible={false} />
               <Text style={styles.sectionHeaderText}>Modo Noturno/Modo Claro</Text>
             </View>
             <Switch
+              accessibilityRole="switch"
+              accessibilityLabel="Modo noturno"
+              accessibilityHint="Ativa ou desativa o modo noturno"
+              accessibilityState={{ checked: isDarkMode }}
               trackColor={{ false: colors.listItem, true: colors.darkHeader }}
               thumbColor={isDarkMode ? colors.iconActive : colors.iconColor}
               ios_backgroundColor={colors.listItem}
@@ -73,11 +83,16 @@ export default function ProfileScreen() {
         <View style={styles.sectionContainer}>
           <View style={styles.sectionHeaderRow}>
             <View style={styles.headerIconLabel}>
-              <MaterialCommunityIcons name="account" size={24} color={colors.textListHeader} />
+              <MaterialCommunityIcons name="account" size={24} color={colors.textListHeader} accessible={false} />
               <Text style={styles.sectionHeaderText}>Usuário</Text>
             </View>
-            <TouchableOpacity style={styles.sectionActionIcon}>
-              <MaterialCommunityIcons name="undo" size={24} color={colors.textListHeader} />
+            <TouchableOpacity
+              style={styles.sectionActionIcon}
+              accessibilityRole="button"
+              accessibilityLabel="Redefinir opções do usuário"
+              accessibilityHint="Restaura as opções do usuário para o padrão"
+            >
+              <MaterialCommunityIcons name="undo" size={24} color={colors.textListHeader} accessible={false} />
             </TouchableOpacity>
           </View>
           
@@ -92,7 +107,7 @@ export default function ProfileScreen() {
         <View style={styles.sectionContainer}>
           <View style={styles.sectionHeaderRow}>
             <View style={styles.headerIconLabel}>
-              <MaterialCommunityIcons name="comment-text-outline" size={24} color={colors.textListHeader} />
+              <MaterialCommunityIcons name="comment-text-outline" size={24} color={colors.textListHeader} accessible={false} />
               <Text style={styles.sectionHeaderText}>Feedback</Text>
             </View>
             <View style={styles.emptyAction} /> 

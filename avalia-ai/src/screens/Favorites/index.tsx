@@ -10,49 +10,67 @@ return (
         <ImageBackground 
         source={{ uri: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5' }} 
         style={styles.headerBackground}
+        accessible={false}
         >
         <View style={styles.overlay}>
             <View style={styles.avatarContainer}>
-            <Ionicons name="person-circle" size={80} color="white" />
+            <Ionicons name="person-circle" size={80} color="white" accessible={false} />
             </View>
-            <Text style={styles.headerTitle}>Meus Favoritos</Text>
+            <Text style={styles.headerTitle} accessibilityRole="header" accessibilityLabel="Meus Favoritos">Meus Favoritos</Text>
         </View>
         
           {/* Botão Flutuante de Coração */}
-        <TouchableOpacity style={styles.fabHeart}>
-            <Ionicons name="heart" size={24} color="white" />
+        <TouchableOpacity
+            style={styles.fabHeart}
+            accessibilityRole="button"
+            accessibilityLabel="Remover favorito"
+            accessibilityHint="Remove o item selecionado da lista de favoritos"
+        >
+            <Ionicons name="heart" size={24} color="white" accessible={false} />
         </TouchableOpacity>
         </ImageBackground>
 
         {/* 2. Filtros e Contador */}
         <View style={styles.infoRow}>
-        <Text style={styles.countText}>12 lugares favoritos</Text>
-        <TouchableOpacity style={styles.filterButton}>
+        <Text style={styles.countText} accessibilityLabel="Quantidade de favoritos">12 lugares favoritos</Text>
+        <TouchableOpacity
+            style={styles.filterButton}
+            accessibilityRole="button"
+            accessibilityLabel="Ordenar por mais recentes"
+            accessibilityHint="Ordena a lista de favoritos mostrando os itens mais recentes primeiro"
+        >
             <Text style={styles.filterText}>Mais recentes</Text>
-            <Ionicons name="filter" size={16} color="blue" />
+            <Ionicons name="filter" size={16} color="blue" accessible={false} />
         </TouchableOpacity>
         </View>
 
         {/* 3. Card do Restaurante (Exemplo baseado na image_ccbcd8.png) */}
-        <View style={styles.card}>
+        <View
+        style={styles.card}
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel="Restaurante Vista, 4.8 estrelas, Restaurante, 1,2 km"
+        accessibilityHint="Toque para ver mais detalhes sobre o Restaurante Vista"
+        >
         <Image 
             source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
-            style={styles.cardImage} 
+            style={styles.cardImage}
+            accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
             <Text style={styles.restaurantName}>Restaurante Vista</Text>
-            <Ionicons name="bookmark" size={20} color="blue" />
+            <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
             </View>
             
             <View style={styles.ratingRow}>
-            <Ionicons name="star" size={14} color="#f1c40f" />
+            <Ionicons name="star" size={14} color="#f1c40f" accessible={false} />
             <Text style={styles.ratingText}>4.8</Text>
             <Text style={styles.categoryText}> • Restaurante</Text>
             </View>
 
             <Text style={styles.locationText}>
-            <Ionicons name="location" size={12} /> Centro, Florianópolis  •  1,2 km
+            <Ionicons name="location" size={12} accessible={false} /> Centro, Florianópolis  •  1,2 km
             </Text>
             <Text style={styles.descriptionText} numberOfLines={1}>
             Ambiente incrível e comida ainda melhor!
@@ -61,25 +79,32 @@ return (
         </View>
 
         {/* 3. Card do Restaurante (Exemplo baseado na image_ccbcd8.png) */}
-        <View style={styles.card}>
+        <View
+        style={styles.card}
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel="Praias, 4.8 estrelas, Restaurante, 1,2 km"
+        accessibilityHint="Toque para ver mais detalhes sobre Praias"
+        >
         <Image 
             source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
-            style={styles.cardImage} 
+            style={styles.cardImage}
+            accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
             <Text style={styles.restaurantName}>Praias</Text>
-            <Ionicons name="bookmark" size={20} color="blue" />
+            <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
             </View>
             
             <View style={styles.ratingRow}>
-            <Ionicons name="star" size={14} color="#f1c40f" />
+            <Ionicons name="star" size={14} color="#f1c40f" accessible={false} />
             <Text style={styles.ratingText}>4.8</Text>
             <Text style={styles.categoryText}> • Restaurante</Text>
             </View>
 
             <Text style={styles.locationText}>
-            <Ionicons name="location" size={12} /> Centro, Florianópolis  •  1,2 km
+            <Ionicons name="location" size={12} accessible={false} /> Centro, Florianópolis  •  1,2 km
             </Text>
             <Text style={styles.descriptionText} numberOfLines={1}>
             Ambiente incrível e comida ainda melhor!
@@ -88,25 +113,32 @@ return (
         </View>
 
         {/* 3. Card do Restaurante (Exemplo baseado na image_ccbcd8.png) */}
-        <View style={styles.card}>
+        <View
+        style={styles.card}
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel="Pontos Turisticos, 4.8 estrelas, Restaurante, 1,2 km"
+        accessibilityHint="Toque para ver mais detalhes sobre Pontos Turisticos"
+        >
         <Image 
             source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
-            style={styles.cardImage} 
+            style={styles.cardImage}
+            accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
             <Text style={styles.restaurantName}>Pontos Turisticos</Text>
-            <Ionicons name="bookmark" size={20} color="blue" />
+            <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
             </View>
             
             <View style={styles.ratingRow}>
-            <Ionicons name="star" size={14} color="#f1c40f" />
+            <Ionicons name="star" size={14} color="#f1c40f" accessible={false} />
             <Text style={styles.ratingText}>4.8</Text>
             <Text style={styles.categoryText}> • Restaurante</Text>
             </View>
 
             <Text style={styles.locationText}>
-            <Ionicons name="location" size={12} /> Centro, Florianópolis  •  1,2 km
+            <Ionicons name="location" size={12} accessible={false} /> Centro, Florianópolis  •  1,2 km
             </Text>
             <Text style={styles.descriptionText} numberOfLines={1}>
             Ambiente incrível e comida ainda melhor!
@@ -115,25 +147,32 @@ return (
         </View>
 
         {/* 3. Card do Restaurante (Exemplo baseado na image_ccbcd8.png) */}
-        <View style={styles.card}>
+        <View
+        style={styles.card}
+        accessible
+        accessibilityRole="button"
+        accessibilityLabel="Parques, 4.8 estrelas, Restaurante, 1,2 km"
+        accessibilityHint="Toque para ver mais detalhes sobre Parques"
+        >
         <Image 
             source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
-            style={styles.cardImage} 
+            style={styles.cardImage}
+            accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
             <Text style={styles.restaurantName}>Parques</Text>
-            <Ionicons name="bookmark" size={20} color="blue" />
+            <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
             </View>
             
             <View style={styles.ratingRow}>
-            <Ionicons name="star" size={14} color="#f1c40f" />
+            <Ionicons name="star" size={14} color="#f1c40f" accessible={false} />
             <Text style={styles.ratingText}>4.8</Text>
             <Text style={styles.categoryText}> • Restaurante</Text>
             </View>
 
             <Text style={styles.locationText}>
-            <Ionicons name="location" size={12} /> Centro, Florianópolis  •  1,2 km
+            <Ionicons name="location" size={12} accessible={false} /> Centro, Florianópolis  •  1,2 km
             </Text>
             <Text style={styles.descriptionText} numberOfLines={1}>
             Ambiente incrível e comida ainda melhor!

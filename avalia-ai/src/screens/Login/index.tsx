@@ -36,64 +36,119 @@ export default function Login() {
       {/* --- PARTE 2: O CARTÃO ESCURO DE LOGIN --- */}
       <View style={styles.bottomSheet}>
 
-        <Text style={styles.titulo}>
+        <Text
+          style={styles.titulo}
+          accessible={true}
+          accessibilityRole="header"
+          accessibilityLabel="Bem-vindo de volta!"
+        >
           Bem-vindo de <Text style={styles.tituloDestaque}>volta!</Text> 👋
         </Text>
         <Text style={styles.subtitulo}>faça login para continuar</Text>
 
         {/* Campo de E-mail com Ícone */}
         <View style={styles.inputContainer}>
-          <MaterialCommunityIcons name="email-outline" size={20} color="#888" style={styles.icon} />
+          <MaterialCommunityIcons
+            name="email-outline"
+            size={20}
+            color="#888"
+            style={styles.icon}
+            accessible={false}
+          />
           <TextInput
             style={styles.input}
             placeholder="E-MAIL"
             placeholderTextColor="#888"
             keyboardType="email-address"
+            autoCapitalize="none"
+            textContentType="emailAddress"
+            accessibilityLabel="Campo de e-mail"
+            accessibilityHint="Digite seu e-mail para entrar"
           />
         </View>
 
         {/* Campo de Senha com Ícone de Olho */}
         <View style={styles.inputContainer}>
-          <MaterialCommunityIcons name="lock-outline" size={20} color="#888" style={styles.icon} />
+          <MaterialCommunityIcons
+            name="lock-outline"
+            size={20}
+            color="#888"
+            style={styles.icon}
+            accessible={false}
+          />
           <TextInput
             style={styles.input}
             placeholder="SENHA"
             placeholderTextColor="#888"
             secureTextEntry={!mostrarSenha} // Esconde a senha se for falso
+            accessibilityLabel="Campo de senha"
+            accessibilityHint="Digite sua senha para entrar"
+            textContentType="password"
           />
-          <TouchableOpacity onPress={() => setMostrarSenha(!mostrarSenha)}>
-            <MaterialCommunityIcons name={mostrarSenha ? "eye-off-outline" : "eye-outline"} size={20} color="#888" />
+          <TouchableOpacity
+            onPress={() => setMostrarSenha(!mostrarSenha)}
+            accessibilityRole="button"
+            accessibilityLabel="Alternar exibição da senha"
+            accessibilityHint="Mostra ou oculta o texto da senha"
+          >
+            <MaterialCommunityIcons
+              name={mostrarSenha ? "eye-off-outline" : "eye-outline"}
+              size={20}
+              color="#888"
+              accessible={false}
+            />
           </TouchableOpacity>
         </View>
+
+        {/* Se você adicionar mensagens de erro ou estado de carregamento, use accessibilityLiveRegion="polite" aqui para avisar leitores de tela. */}
 
         {/* Links de Lembrar Senha */}
         <View style={styles.opcoesContainer}>
           <TouchableOpacity
             style={styles.checkboxContainer}
-            onPress={() => setLembrarMim(!lembrarMim)} // <-- O onPress fica AQUI DENTRO da tag!
+            onPress={() => setLembrarMim(!lembrarMim)}
+            accessibilityRole="checkbox"
+            accessibilityLabel="Lembrar de mim"
+            accessibilityHint="Ativa para manter você conectado"
+            accessibilityState={{ checked: lembrarMim }}
           >
             {/* O ícone muda de nome dependendo se lembrarMim for verdadeiro ou falso */}
             <MaterialCommunityIcons
               name={lembrarMim ? "checkbox-marked" : "checkbox-blank-outline"}
               size={20}
               color="#FFD700"
+              accessible={false}
             />
             <Text style={{ marginLeft: 8, color: '#4e4848' }}>Lembrar de mim</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Esqueci minha senha"
+            accessibilityHint="Abre a tela de recuperação de senha"
+          >
             <Text style={styles.linkAmarelo}>Esqueci minha senha</Text>
           </TouchableOpacity>
         </View>
 
         {/* Botão Principal */}
-        <TouchableOpacity style={styles.botaoEntrar}>
+        <TouchableOpacity
+          style={styles.botaoEntrar}
+          accessibilityRole="button"
+          accessibilityLabel="Botão para entrar no sistema"
+          accessibilityHint="Faz login com o e-mail e senha informados"
+        >
           <Text style={styles.textoBotaoEntrar}>Entrar</Text>
         </TouchableOpacity>
 
         {/* Rodapé para Criar Conta */}
         <View style={styles.rodape}>
           <Text style={styles.textoOpcoes}>Ainda não tem uma conta?</Text>
-          <TouchableOpacity onPress={() => navigation.navigate('Register')}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Register')}
+            accessibilityRole="button"
+            accessibilityLabel="Criar uma conta"
+            accessibilityHint="Abre a tela de cadastro"
+          >
             <Text style={styles.linkAmarelo}>Criar uma conta</Text>
           </TouchableOpacity>
         </View>

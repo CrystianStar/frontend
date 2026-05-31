@@ -1,18 +1,17 @@
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function Register() {
   const [nome, setNome] = useState('');
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [mostrarSenha, setMostrarSenha] = useState(false);
-    const [dataNascimento, setDataNascimento] = useState('');
-    const handleDataChange = (texto: string) => {
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [dataNascimento, setDataNascimento] = useState('');
+
+  const handleDataChange = (texto: string) => {
     // 1. Remove tudo que NÃO for número (bloqueia letras)
     let apenasNumeros = texto.replace(/[^0-9]/g, '');
-    const navigation = useNavigation<any>();
 
     // 2. Coloca as barras automaticamente (Opcional, mas fica lindo!)
     if (apenasNumeros.length > 2) {
@@ -29,15 +28,16 @@ export default function Register() {
 
     return (
     <View style={styles.container}>
-    <ImageBackground 
-            source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1000' }} 
-            style={styles.headerBackground}
-            >
-            <View style={styles.overlay}>
+      <ImageBackground 
+        source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=1000' }} 
+        style={styles.headerBackground}
+        accessible={false}
+      >
+        <View style={styles.overlay}>
                 {/* Logo e Nome */}
                 <View style={styles.logoContainer}>
-                <MaterialCommunityIcons name="map-marker" size={28} color="#0044ff" />
-                <Text style={styles.logoText}>AvaliaAí</Text>
+                  <MaterialCommunityIcons name="map-marker" size={28} color="#0044ff" accessible={false} />
+                  <Text style={styles.logoText}>AvaliaAí</Text>
                 </View>
                 
                 {/* Textos de impacto */}
@@ -48,7 +48,13 @@ export default function Register() {
             <View style={styles.cartaoLogin}>
         
         {/* Título do Cartão (Opcional, caso queira igual ao design) */}
-        <Text style={styles.tituloCadastro}>Crie uma Conta</Text>
+        <Text
+          style={styles.tituloCadastro}
+          accessibilityRole="header"
+          accessibilityLabel="Criar uma conta"
+        >
+          Crie uma Conta
+        </Text>
 
         <View style={styles.campoContainer}>
         <Text style={styles.rotulo}>NOME</Text>
@@ -58,6 +64,9 @@ export default function Register() {
             placeholderTextColor="#666"
             value={nome}
             onChangeText={setNome}
+            accessibilityLabel="Campo de nome"
+            accessibilityHint="Digite seu nome completo"
+            textContentType="name"
         />
         </View>
 
@@ -68,8 +77,12 @@ export default function Register() {
             placeholder="ola@gmail.com" 
             placeholderTextColor="#666"
             keyboardType="email-address"
+            autoCapitalize="none"
             value={email}
             onChangeText={setEmail}
+            accessibilityLabel="Campo de e-mail"
+            accessibilityHint="Digite seu e-mail para cadastro"
+            textContentType="emailAddress"
         />
         </View>
 
@@ -82,6 +95,9 @@ export default function Register() {
             secureTextEntry={!mostrarSenha}
             value={senha}
             onChangeText={setSenha}
+            accessibilityLabel="Campo de senha"
+            accessibilityHint="Digite sua senha de cadastro"
+            textContentType="password"
         />
         </View>
 
@@ -95,11 +111,19 @@ export default function Register() {
             onChangeText={handleDataChange}
             keyboardType="numeric" // Força o teclado numérico no celular!
             maxLength={10}
+            accessibilityLabel="Campo de data de nascimento"
+            accessibilityHint="Digite sua data de nascimento no formato dia, mês e ano"
         />
         </View>
 
-        <TouchableOpacity style={styles.botaoEntrar}>
-        <Text style={styles.textoBotaoEntrar}>Cadastrar</Text>
+        {/* Use accessibilityLiveRegion="polite" em mensagens de erro/carregamento para leitores de tela */}
+        <TouchableOpacity
+          style={styles.botaoEntrar}
+          accessibilityRole="button"
+          accessibilityLabel="Botão cadastrar"
+          accessibilityHint="Envia os dados para criar sua conta"
+        >
+          <Text style={styles.textoBotaoEntrar}>Cadastrar</Text>
         </TouchableOpacity>
 
         </View>
