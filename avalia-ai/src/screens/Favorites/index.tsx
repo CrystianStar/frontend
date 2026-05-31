@@ -8,7 +8,7 @@ return (
     <ScrollView>
         {/* 1. Header com Imagem de Fundo */}
         <ImageBackground 
-        source={{ uri: 'https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5' }} 
+        source={require('../assets/img_login/img_dunas.png')} 
         style={styles.headerBackground}
         accessible={false}
         >
@@ -53,7 +53,7 @@ return (
         accessibilityHint="Toque para ver mais detalhes sobre o Restaurante Vista"
         >
         <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
+            source={require('../assets/img_login/img_restaurant.png')} 
             style={styles.cardImage}
             accessible={false}
         />
@@ -87,7 +87,7 @@ return (
         accessibilityHint="Toque para ver mais detalhes sobre Praias"
         >
         <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
+            source={require('../assets/img_login/img_praia.png')} 
             style={styles.cardImage}
             accessible={false}
         />
@@ -121,7 +121,7 @@ return (
         accessibilityHint="Toque para ver mais detalhes sobre Pontos Turisticos"
         >
         <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
+            source={require('../assets/img_login/img_turismo.png')} 
             style={styles.cardImage}
             accessible={false}
         />
@@ -151,17 +151,17 @@ return (
         style={styles.card}
         accessible
         accessibilityRole="button"
-        accessibilityLabel="Parques, 4.8 estrelas, Restaurante, 1,2 km"
-        accessibilityHint="Toque para ver mais detalhes sobre Parques"
+        accessibilityLabel="Praia, 4.8 estrelas, Restaurante, 1,2 km"
+        accessibilityHint="Toque para ver mais detalhes sobre Praia"
         >
         <Image 
-            source={{ uri: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4' }} 
+            source={require('../assets/img_login/img_praia1.png')} 
             style={styles.cardImage}
             accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
-            <Text style={styles.restaurantName}>Parques</Text>
+            <Text style={styles.restaurantName}>Praia</Text>
             <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
             </View>
             

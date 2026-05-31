@@ -7,7 +7,8 @@ import {
   Dimensions, 
   TouchableOpacity, 
   ScrollView, 
-  Image 
+  Image,
+  ImageSourcePropType,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import MapView, { Marker } from 'react-native-maps'; // 👉 Importamos o Mapa Real
@@ -97,14 +98,14 @@ export default function Home() {
 
         {/* Lista de Lugares (Cards) */}
         <View style={styles.sectionHeader}>
-           <Text style={styles.sectionTitle}>Populares</Text>
-           <TouchableOpacity
-             accessibilityRole="button"
-             accessibilityLabel="Ver todos os lugares populares"
-             accessibilityHint="Abre a lista completa de locais populares"
-           >
-             <Text style={styles.seeAll}>Ver todos</Text>
-           </TouchableOpacity>
+          <Text style={styles.sectionTitle}>Populares</Text>
+          <TouchableOpacity
+            accessibilityRole="button"
+            accessibilityLabel="Ver todos os lugares populares"
+            accessibilityHint="Abre a lista completa de locais populares"
+          >
+            <Text style={styles.seeAll}>Ver todos</Text>
+          </TouchableOpacity>
         </View>
 
         <ScrollView 
@@ -113,17 +114,17 @@ export default function Home() {
           contentContainerStyle={{ paddingLeft: 20, paddingBottom: 20 }}
         >
           <PlaceCard 
-            image="https://picsum.photos/200/300" 
+            image={require('../assets/img_login/img_restaurant1.png')} 
             title="Restaurante Beira Mar" 
             rating="4.8"
           />
           <PlaceCard 
-            image="https://picsum.photos/201/300" 
+            image={require('../assets/img_login/img_food.png')} 
             title="Café do Porto" 
             rating="4.5"
           />
           <PlaceCard 
-            image="https://picsum.photos/202/300" 
+            image={require('../assets/img_login/img_praia2.png')} 
             title="Barraca do Sol" 
             rating="4.9"
           />
@@ -162,7 +163,7 @@ function FilterItem({ icon, label, active = false }: FilterItemProps) {
 
 // Tipagem para o Card
 type PlaceCardProps = {
-  image: string;
+  image: ImageSourcePropType;
   title: string;
   rating: string;
 };
@@ -175,7 +176,7 @@ function PlaceCard({ image, title, rating }: PlaceCardProps) {
       accessibilityLabel={`${title}, avaliação ${rating} estrelas`}
       accessibilityHint="Toque para ver mais detalhes"
     >
-      <Image source={{ uri: image }} style={styles.cardImage} accessible={false} />
+      <Image source={image} style={styles.cardImage} accessible={false} />
       <View style={styles.cardInfo}>
         <Text style={styles.cardTitle} numberOfLines={1}>{title}</Text>
         <View style={styles.ratingRow}>
