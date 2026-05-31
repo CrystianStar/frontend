@@ -114,17 +114,17 @@ export default function Home() {
           contentContainerStyle={{ paddingLeft: 20, paddingBottom: 20 }}
         >
           <PlaceCard 
-            image={require('../assets/img_login/img_restaurant1.png')} 
+            image={require('../../assets/img_login/img_restaurant1.png')} 
             title="Restaurante Beira Mar" 
             rating="4.8"
           />
           <PlaceCard 
-            image={require('../assets/img_login/img_food.png')} 
+            image={require('../../assets/img_login/img_food.png')} 
             title="Café do Porto" 
             rating="4.5"
           />
           <PlaceCard 
-            image={require('../assets/img_login/img_praia2.png')} 
+            image={require('../../assets/img_login/img_praia2.png')} 
             title="Barraca do Sol" 
             rating="4.9"
           />

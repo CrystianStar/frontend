@@ -1,7 +1,6 @@
 import { ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import React, { useState, useRef } from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import api from '../../services/api';
 
 export default function Register() {
 
@@ -27,12 +26,12 @@ export default function Register() {
     }
 
     async function userRegister() {
-        await api.post('/user/register', {
-            name: nome,
-            email: email,
-            password: senha,
-            birthDate: dataNascimento
-        });
+        // await api.post('/user/register', {
+        //     name: nome,
+        //     email: email,
+        //     password: senha,
+        //     birthDate: dataNascimento
+        // );
     }
 
     return (

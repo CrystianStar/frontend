@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, ImageBackground, Image, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Já vem no Expo
 
 export default function FavoritesScreen() {
+  const [favoriteItems, setFavoriteItems] = useState<Record<string, boolean>>({
+    restauranteVista: true,
+    mareAlta: true,
+    bistroUrbano: true,
+    praiaPontal: true,
+  });
+
+  const toggleFavorite = (item: string) => {
+    setFavoriteItems(prev => ({ ...prev, [item]: !prev[item] }));
+  };
+
 return (
     <View style={styles.container}>
     <ScrollView>
         {/* 1. Header com Imagem de Fundo */}
         <ImageBackground 
-        source={require('../assets/img_login/img_dunas.png')} 
+        source={require('../../assets/img_login/img_dunas.png')} 
         style={styles.headerBackground}
         accessible={false}
         >
@@ -32,7 +43,7 @@ return (
 
         {/* 2. Filtros e Contador */}
         <View style={styles.infoRow}>
-        <Text style={styles.countText} accessibilityLabel="Quantidade de favoritos">12 lugares favoritos</Text>
+        <Text style={styles.countText} accessibilityLabel="Quantidade de favoritos">4 lugares favoritos</Text>
         <TouchableOpacity
             style={styles.filterButton}
             accessibilityRole="button"
@@ -53,14 +64,27 @@ return (
         accessibilityHint="Toque para ver mais detalhes sobre o Restaurante Vista"
         >
         <Image 
-            source={require('../assets/img_login/img_restaurant.png')} 
+            source={require('../../assets/img_login/img_restaurant.png')} 
             style={styles.cardImage}
             accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
             <Text style={styles.restaurantName}>Restaurante Vista</Text>
-            <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
+            <TouchableOpacity
+              onPress={() => toggleFavorite('restauranteVista')}
+              accessibilityRole="button"
+              accessibilityLabel={favoriteItems.restauranteVista ? 'Remover Restaurante Vista dos favoritos' : 'Adicionar Restaurante Vista aos favoritos'}
+              accessibilityHint="Ativa ou desativa o favorito deste item"
+              style={styles.bookmarkButton}
+            >
+              <Ionicons
+                name={favoriteItems.restauranteVista ? 'bookmark' : 'bookmark-outline'}
+                size={20}
+                color={favoriteItems.restauranteVista ? 'blue' : '#999'}
+                accessible={false}
+              />
+            </TouchableOpacity>
             </View>
             
             <View style={styles.ratingRow}>
@@ -83,31 +107,44 @@ return (
         style={styles.card}
         accessible
         accessibilityRole="button"
-        accessibilityLabel="Praias, 4.8 estrelas, Restaurante, 1,2 km"
-        accessibilityHint="Toque para ver mais detalhes sobre Praias"
+        accessibilityLabel="Restaurante Maré Alta, restaurante de praia com vista para o mar, 4.8 estrelas, 800 metros"
+        accessibilityHint="Toque para ver mais detalhes sobre o Restaurante Maré Alta"
         >
         <Image 
-            source={require('../assets/img_login/img_praia.png')} 
+            source={require('../../assets/img_login/img_praia.png')} 
             style={styles.cardImage}
             accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
-            <Text style={styles.restaurantName}>Praias</Text>
-            <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
+            <Text style={styles.restaurantName}>Restaurante Maré Alta</Text>
+            <TouchableOpacity
+              onPress={() => toggleFavorite('mareAlta')}
+              accessibilityRole="button"
+              accessibilityLabel={favoriteItems.mareAlta ? 'Remover Restaurante Maré Alta dos favoritos' : 'Adicionar Restaurante Maré Alta aos favoritos'}
+              accessibilityHint="Ativa ou desativa o favorito deste item"
+              style={styles.bookmarkButton}
+            >
+              <Ionicons
+                name={favoriteItems.mareAlta ? 'bookmark' : 'bookmark-outline'}
+                size={20}
+                color={favoriteItems.mareAlta ? 'blue' : '#999'}
+                accessible={false}
+              />
+            </TouchableOpacity>
             </View>
             
             <View style={styles.ratingRow}>
             <Ionicons name="star" size={14} color="#f1c40f" accessible={false} />
-            <Text style={styles.ratingText}>4.8</Text>
-            <Text style={styles.categoryText}> • Restaurante</Text>
+            <Text style={styles.ratingText}>4.9</Text>
+            <Text style={styles.categoryText}> • Praia</Text>
             </View>
 
             <Text style={styles.locationText}>
-            <Ionicons name="location" size={12} accessible={false} /> Centro, Florianópolis  •  1,2 km
+            <Ionicons name="location" size={12} accessible={false} /> Praia do Rosa  •  800 m
             </Text>
             <Text style={styles.descriptionText} numberOfLines={1}>
-            Ambiente incrível e comida ainda melhor!
+            Sabores do litoral com vista para o mar.
             </Text>
         </View>
         </View>
@@ -117,31 +154,44 @@ return (
         style={styles.card}
         accessible
         accessibilityRole="button"
-        accessibilityLabel="Pontos Turisticos, 4.8 estrelas, Restaurante, 1,2 km"
-        accessibilityHint="Toque para ver mais detalhes sobre Pontos Turisticos"
+        accessibilityLabel="Bistrô Urbano, ambiente urbano e contemporâneo, 4.8 estrelas, 500 metros"
+        accessibilityHint="Toque para ver mais detalhes sobre o Bistrô Urbano"
         >
         <Image 
-            source={require('../assets/img_login/img_turismo.png')} 
+            source={require('../../assets/img_login/img_turismo.png')} 
             style={styles.cardImage}
             accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
-            <Text style={styles.restaurantName}>Pontos Turisticos</Text>
-            <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
+            <Text style={styles.restaurantName}>Bistrô Urbano</Text>
+            <TouchableOpacity
+              onPress={() => toggleFavorite('bistroUrbano')}
+              accessibilityRole="button"
+              accessibilityLabel={favoriteItems.bistroUrbano ? 'Remover Bistrô Urbano dos favoritos' : 'Adicionar Bistrô Urbano aos favoritos'}
+              accessibilityHint="Ativa ou desativa o favorito deste item"
+              style={styles.bookmarkButton}
+            >
+              <Ionicons
+                name={favoriteItems.bistroUrbano ? 'bookmark' : 'bookmark-outline'}
+                size={20}
+                color={favoriteItems.bistroUrbano ? 'blue' : '#999'}
+                accessible={false}
+              />
+            </TouchableOpacity>
             </View>
             
             <View style={styles.ratingRow}>
             <Ionicons name="star" size={14} color="#f1c40f" accessible={false} />
-            <Text style={styles.ratingText}>4.8</Text>
-            <Text style={styles.categoryText}> • Restaurante</Text>
+            <Text style={styles.ratingText}>4.7</Text>
+            <Text style={styles.categoryText}> • Turismo</Text>
             </View>
 
             <Text style={styles.locationText}>
-            <Ionicons name="location" size={12} accessible={false} /> Centro, Florianópolis  •  1,2 km
+            <Ionicons name="location" size={12} accessible={false} /> Centro histórico  •  500 m
             </Text>
             <Text style={styles.descriptionText} numberOfLines={1}>
-            Ambiente incrível e comida ainda melhor!
+            Comida contemporânea em ambiente descolado.
             </Text>
         </View>
         </View>
@@ -151,31 +201,44 @@ return (
         style={styles.card}
         accessible
         accessibilityRole="button"
-        accessibilityLabel="Praia, 4.8 estrelas, Restaurante, 1,2 km"
-        accessibilityHint="Toque para ver mais detalhes sobre Praia"
+        accessibilityLabel="Café do Pontal, café à beira da praia, 4.8 estrelas, 2,5 km"
+        accessibilityHint="Toque para ver mais detalhes sobre o Café do Pontal"
         >
         <Image 
-            source={require('../assets/img_login/img_praia1.png')} 
+            source={require('../../assets/img_login/img_praia1.png')} 
             style={styles.cardImage}
             accessible={false}
         />
         <View style={styles.cardContent}>
             <View style={styles.cardHeader}>
-            <Text style={styles.restaurantName}>Praia</Text>
-            <Ionicons name="bookmark" size={20} color="blue" accessible={false} />
+            <Text style={styles.restaurantName}>Praia do Pontal</Text>
+            <TouchableOpacity
+              onPress={() => toggleFavorite('praiaPontal')}
+              accessibilityRole="button"
+              accessibilityLabel={favoriteItems.praiaPontal ? 'Remover Praia do Pontal dos favoritos' : 'Adicionar Praia do Pontal aos favoritos'}
+              accessibilityHint="Ativa ou desativa o favorito deste item"
+              style={styles.bookmarkButton}
+            >
+              <Ionicons
+                name={favoriteItems.praiaPontal ? 'bookmark' : 'bookmark-outline'}
+                size={20}
+                color={favoriteItems.praiaPontal ? 'blue' : '#999'}
+                accessible={false}
+              />
+            </TouchableOpacity>
             </View>
             
             <View style={styles.ratingRow}>
             <Ionicons name="star" size={14} color="#f1c40f" accessible={false} />
             <Text style={styles.ratingText}>4.8</Text>
-            <Text style={styles.categoryText}> • Restaurante</Text>
+            <Text style={styles.categoryText}> • Parque</Text>
             </View>
 
             <Text style={styles.locationText}>
-            <Ionicons name="location" size={12} accessible={false} /> Centro, Florianópolis  •  1,2 km
+            <Ionicons name="location" size={12} accessible={false} /> Parque das Águas  •  2,5 km
             </Text>
             <Text style={styles.descriptionText} numberOfLines={1}>
-            Ambiente incrível e comida ainda melhor!
+            Parque com vista para praia.
             </Text>
         </View>
         </View>
@@ -209,6 +272,7 @@ const styles = StyleSheet.create({
   cardImage: { width: 100, height: 100, borderRadius: 10 },
   cardContent: { flex: 1, marginLeft: 10, justifyContent: 'center' },
   cardHeader: { flexDirection: 'row', justifyContent: 'space-between' },
+  bookmarkButton: { padding: 4 },
   restaurantName: { fontSize: 18, fontWeight: 'bold' },
   ratingRow: { flexDirection: 'row', alignItems: 'center', marginVertical: 4 },
   ratingText: { color: 'blue', fontWeight: 'bold', marginLeft: 4 },
